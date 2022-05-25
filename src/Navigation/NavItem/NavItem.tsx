@@ -1,6 +1,7 @@
+import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import NavigationContext from "../../context/NavigationContext";
 
 interface NavItemProps {
@@ -15,22 +16,27 @@ export const NavItem = ({
   subItems,
 }: NavItemProps): JSX.Element => {
   const { showHobbies, setShowHobbies } = useContext(NavigationContext);
-  // const [showDropdown, setShowDropdown] = useState(false);
-  const router = useRouter();
-  console.log("Router", router);
+  const { route } = useRouter();
+  const selectedNavItem = link === route;
+
   const toggleDropdown = () => {
     setShowHobbies(!showHobbies);
   };
 
   if (!subItems) {
     return (
-      <li className="hover:bg-green-400 p-2 m-2 rounded-lg">
-        <Link href={link}>
-          <a className="inline-flex items-center ">
-            <span className="text-l text-white tracking-wide">{label}</span>
+      <Link href={link}>
+        <li
+          className={clsx(
+            "p-1 px-4 m-2 mb-6 rounded-xl cursor-pointer",
+            selectedNavItem ? "bg-green-400" : "hover:bg-green-400"
+          )}
+        >
+          <a className="items-center flex-1 ">
+            <span className="tracking-normal text-white text-l">{label}</span>
           </a>
-        </Link>
-      </li>
+        </li>
+      </Link>
     );
   }
 
@@ -38,7 +44,7 @@ export const NavItem = ({
     <>
       <div className="inline-flex items-center p-3 mr-4 ">
         <button
-          className="text-xl text-white tracking-wide"
+          className="text-xl tracking-wide text-white"
           onClick={toggleDropdown}
         >
           {label}

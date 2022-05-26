@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import NavigationContext from "../../context/NavigationContext";
+import { NavigationContext } from "../../context/NavigationContext";
 
 interface NavItemProps {
   label: string;
@@ -29,10 +29,12 @@ export const NavItem = ({
         <li
           className={clsx(
             "p-1 px-4 m-2 mb-6 rounded-xl cursor-pointer",
-            selectedNavItem ? "bg-green-400" : "hover:bg-green-400"
+            selectedNavItem
+              ? "bg-gradient-to-r from-green-400"
+              : "hover:bg-gradient-to-r from-green-400 "
           )}
         >
-          <a className="items-center flex-1 ">
+          <a className="items-center ">
             <span className="tracking-normal text-white text-l">{label}</span>
           </a>
         </li>

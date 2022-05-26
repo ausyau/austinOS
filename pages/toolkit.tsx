@@ -1,4 +1,4 @@
-import { NavBar } from "../src/Navigation/NavBar";
+import { NavBar } from "../src/components/Navigation/NavBar";
 
 const ToolKit = () => {
   return (

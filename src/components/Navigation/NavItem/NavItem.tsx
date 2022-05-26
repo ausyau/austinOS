@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { NavigationContext } from "../../context/NavigationContext";
+import { NavigationContext } from "../../../context/NavigationContext";
 
 interface NavItemProps {
   label: string;

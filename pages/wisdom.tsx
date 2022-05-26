@@ -1,8 +1,8 @@
-import { NavBar } from "../src/Navigation/NavBar";
+import { NavBar } from "../src/components/Navigation/NavBar";
 
 const Wisdom = () => {
   return (
-    <div className="flex flex-1 flex-row">
+    <div className="flex flex-row flex-1">
       <NavBar />
       <h1>Wisdom</h1>;
     </div>

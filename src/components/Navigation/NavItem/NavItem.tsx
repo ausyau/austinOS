@@ -26,14 +26,7 @@ export const NavItem = ({
   if (!subItems) {
     return (
       <Link href={link}>
-        <li
-          className={clsx(
-            "p-1 px-4 m-2 mb-6 rounded-xl cursor-pointer",
-            selectedNavItem
-              ? "bg-gradient-to-r from-green-400"
-              : "hover:bg-gradient-to-r from-green-400 "
-          )}
-        >
+        <li className={clsx("navItem", selectedNavItem && "selected")}>
           <a className="items-center ">
             <span className="tracking-normal text-white text-l">{label}</span>
           </a>

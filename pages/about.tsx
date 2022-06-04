@@ -19,10 +19,9 @@ const Description = (): JSX.Element => {
         </p>
         <p className="pb-4">
           Thanks for visting AustinOS. I made this site to share with you
-          several things that occupy my time and is a good represention a lot of
-          who I am - hobbies, side projects, and work. This site is also my
-          playground for fooling around with new technologies (sorry if you
-          encounter a bug!)
+          several things that occupy my time and showcase a lot of who I am -
+          hobbies, side projects, and work. This site is also my playground for
+          fooling around with new technologies (sorry if you encounter a bug!)
         </p>
         <p className="pb-4">
           Feel free to poke around and check things out. The source code is all

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useContext } from "react";
+import { ThemeContext } from "../../../context/ThemeContext";
 import { NavItem } from "../NavItem";
 
 const pages = [
@@ -17,11 +19,26 @@ const pages = [
   },
   { label: "Wisdom", link: "/wisdom" },
 ];
+
+const ToggleTheme = () => {
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  function isDark() {
+    return theme === "dark";
+  }
+
+  function toggleTheme() {
+    setTheme(theme === "dark" ? "light" : "dark");
+  }
+
+  return <button onClick={() => toggleTheme()}> Change Theme </button>;
+};
+
 // Eventually Take in props
 export const NavBar = () => {
   return (
     <>
-      <nav className="flex flex-col flex-1 min-h-screen bg-green-300 max-w-nav md">
+      <nav className="flex flex-col flex-1 min-h-screen bg-primary max-w-nav md">
         <Link href="/">
           <a className="inline-flex items-center p-2 mr-4 ">
             <svg
@@ -46,6 +63,7 @@ export const NavBar = () => {
             );
           })}
         </ul>
+        <ToggleTheme />
       </nav>
     </>
   );

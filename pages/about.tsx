@@ -60,10 +60,10 @@ const Work = (): JSX.Element => {
 
 const About = (): JSX.Element => {
   return (
-    <div className="flex flex-row flex-1">
+    <div className="flex flex-row flex-1 bg-primary">
       <Header />
       <NavBar />
-      <div className="flex flex-col items-center justify-around flex-1 font-mono">
+      <div className="flex flex-col items-center justify-around flex-1 font-mono text-primary">
         <div className="w-6/12 ">
           <Description />
           <Social />

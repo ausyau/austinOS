@@ -16,9 +16,9 @@ export const NavigationContext = createContext<NavigationContextType>({
   setShowHobbies: () => {},
 });
 
-export const NavigationProvider = ({ children }: { children: JSX.Element }) => {
+export const NavigationProvider = ({children}: {children: JSX.Element}) => {
   const [showHobbies, setShowHobbies] = useState(false);
-  const navigationValues = { showHobbies, setShowHobbies };
+  const navigationValues = {showHobbies, setShowHobbies};
 
   return (
     <NavigationContext.Provider value={navigationValues}>

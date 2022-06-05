@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useState,
-} from "react";
+import React, {createContext, Dispatch, SetStateAction, useState} from "react";
 
 type Theme = "dark" | "light";
 
@@ -62,7 +57,7 @@ export const ThemeProvider = ({
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{theme, setTheme}}>
       {children}
     </ThemeContext.Provider>
   );

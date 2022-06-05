@@ -1,27 +1,27 @@
 import Link from "next/link";
-import { useContext } from "react";
-import { ThemeContext } from "../../../context/ThemeContext";
-import { NavItem } from "../NavItem";
+import {useContext} from "react";
+import {ThemeContext} from "../../../context/ThemeContext";
+import {NavItem} from "../NavItem";
 
 const pages = [
-  { label: "About Me", link: "/about" },
-  { label: "YouTube", link: "/yt" },
-  { label: "Projects", link: "/projects" },
-  { label: "My Toolkit", link: "/toolkit" },
+  {label: "About Me", link: "/about"},
+  {label: "YouTube", link: "/yt"},
+  {label: "Projects", link: "/projects"},
+  {label: "My Toolkit", link: "/toolkit"},
   {
     label: "Hobbies",
     link: "/hobbies",
     subItems: [
-      { label: "Cycling", link: "/cycling" },
-      { label: "Skiing", link: "/skiing" },
-      { label: "Travel & Photography", link: "/travel" },
+      {label: "Cycling", link: "/cycling"},
+      {label: "Skiing", link: "/skiing"},
+      {label: "Travel & Photography", link: "/travel"},
     ],
   },
-  { label: "Wisdom", link: "/wisdom" },
+  {label: "Wisdom", link: "/wisdom"},
 ];
 
 const ToggleTheme = () => {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const {theme, setTheme} = useContext(ThemeContext);
 
   function isDark() {
     return theme === "dark";
@@ -52,7 +52,7 @@ export const NavBar = () => {
           </a>
         </Link>
         <ul>
-          {pages.map(({ label, link, subItems }, index) => {
+          {pages.map(({label, link, subItems}, index) => {
             return (
               <NavItem
                 key={index}

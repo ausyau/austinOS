@@ -1,8 +1,8 @@
-import type { NextPage } from "next";
+import type {NextPage} from "next";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { NavBar } from "../src/components/Navigation/NavBar";
-import { Header } from "../src/components/Header";
+import {NavBar} from "../src/components/Navigation/NavBar";
+import {Header} from "../src/components/Header";
 
 const Home: NextPage = () => {
   return (

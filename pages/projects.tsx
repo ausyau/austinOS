@@ -1,5 +1,5 @@
-import { Header } from "../src/components/Header";
-import { NavBar } from "../src/components/Navigation/NavBar";
+import {Header} from "../src/components/Header";
+import {NavBar} from "../src/components/Navigation/NavBar";
 
 const Projects = () => {
   return (

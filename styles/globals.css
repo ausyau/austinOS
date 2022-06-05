@@ -9,7 +9,7 @@
 
 @layer base {
   h1 {
-    @apply text-primary
+    @apply text-primary;
   }
 }
 
@@ -17,7 +17,11 @@
   .navItem {
     @apply p-1 px-4 m-2 mb-6 cursor-pointer rounded-xl;
     background-size: 200% 100%;
-    background-image: linear-gradient(to right, rgb(134 239 172) 50%, rgb(74 222 128) 50%);
+    background-image: linear-gradient(
+      to right,
+      rgb(134 239 172) 50%,
+      rgb(74 222 128) 50%
+    );
     transition: background-position 0.3s;
     transition-timing-function: ease-out;
   }
@@ -25,7 +29,11 @@
     background-position: -100% 0;
   }
   .navItem.selected {
-    background-image: linear-gradient(to right, rgb(74 222 128) 50%, rgb(74 222 128) 50%);
+    background-image: linear-gradient(
+      to right,
+      rgb(74 222 128) 50%,
+      rgb(74 222 128) 50%
+    );
   }
 }
 

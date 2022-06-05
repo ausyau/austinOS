@@ -18,7 +18,7 @@ const pages: NavItemProps[] = [
       {label: "Travel & Photography", link: "/travel", icon: "Photography"},
     ],
   },
-  // {label: "Wisdom", link: "/wisdom"},
+  {label: "Wisdom", link: "/wisdom"},
 ];
 
 const ToggleTheme = () => {
@@ -35,7 +35,7 @@ const ToggleTheme = () => {
 export const NavBar = () => {
   return (
     <>
-      <nav className="flex flex-col flex-1 min-h-screen border-r-2 border-slate-800 bg-secondary max-w-nav md">
+      <nav className="fixed flex flex-col flex-1 min-h-screen border-r-2 border-slate-800 bg-secondary max-w-nav md">
         <Link href="/">
           <a className="inline-flex items-center p-2 mr-4 ">
             <svg

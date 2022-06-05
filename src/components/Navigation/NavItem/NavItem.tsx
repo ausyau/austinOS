@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import {useRouter} from "next/router";
-import {Icons, IconType} from "../../../assets/icons/icons";
+import {IconType} from "../../../assets/icons/icons";
 
 import {useNavigationContext} from "../../../context/NavigationContext";
 
@@ -12,12 +12,7 @@ export interface NavItemProps {
   subItems?: NavItemProps[];
 }
 
-export const NavItem = ({
-  label,
-  link,
-  subItems,
-  icon,
-}: NavItemProps): JSX.Element => {
+export const NavItem = ({label, link, subItems}: NavItemProps): JSX.Element => {
   const {showHobbies, setShowHobbies} = useNavigationContext();
   const {route} = useRouter();
   const selectedNavItem = link === route;
@@ -26,17 +21,11 @@ export const NavItem = ({
     setShowHobbies(!showHobbies);
   };
 
-  console.log("icon", icon);
-  const Test = icon && Icons[icon];
-
-  console.log("Test is", Test);
-
   if (!subItems) {
     return (
       <Link href={link}>
         <li className={clsx("navItem", selectedNavItem && "selected")}>
-          {Test ? <Test /> : null}
-          <a className="items-center ">
+          <a className="items-center">
             <span className="tracking-normal text-primary text-l">{label}</span>
           </a>
         </li>
@@ -46,9 +35,9 @@ export const NavItem = ({
 
   return (
     <>
-      <div className="inline-flex items-center p-3 mr-4 ">
+      <div className="inline-flex items-center p-1 px-4 m-2 mb-6">
         <button
-          className="text-xl tracking-wide text-primary"
+          className="tracking-normal text-primary text-l"
           onClick={toggleDropdown}
         >
           {label}

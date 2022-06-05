@@ -1,4 +1,10 @@
-import React, {createContext, Dispatch, SetStateAction, useState} from "react";
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
 
 type Theme = "dark" | "light";
 
@@ -24,7 +30,7 @@ type ThemeContextType = {
 
 export const ThemeContext = createContext<ThemeContextType>({
   theme: "dark",
-  setTheme: () => {},
+  setTheme: () => [],
 });
 
 type ThemeProviderProps = {
@@ -62,3 +68,5 @@ export const ThemeProvider = ({
     </ThemeContext.Provider>
   );
 };
+
+export const useThemeContext = () => useContext(ThemeContext);

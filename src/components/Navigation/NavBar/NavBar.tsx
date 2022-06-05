@@ -1,6 +1,6 @@
 import Link from "next/link";
-import {useContext} from "react";
-import {ThemeContext} from "../../../context/ThemeContext";
+
+import {useThemeContext} from "../../../context/ThemeContext";
 import {NavItem} from "../NavItem";
 
 const pages = [
@@ -21,11 +21,7 @@ const pages = [
 ];
 
 const ToggleTheme = () => {
-  const {theme, setTheme} = useContext(ThemeContext);
-
-  function isDark() {
-    return theme === "dark";
-  }
+  const {theme, setTheme} = useThemeContext();
 
   function toggleTheme() {
     setTheme(theme === "dark" ? "light" : "dark");

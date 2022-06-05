@@ -5,35 +5,37 @@
     "jest": true
   },
   "extends": [
-    "airbnb-base",
+    "eslint:recommended",
     "next/core-web-vitals",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier"
   ],
   "rules": {
     "prettier/prettier": "error",
     "class-methods-use-this": "off",
     "@typescript-eslint/camelcase": "off",
     "no-useless-constructor": "off",
-    "object-curly-spacing": ["error", "always"],
+    "no-empty-function": [
+      "off",
+      {
+        "allow": ["arrowFunctions"]
+      }
+    ],
+    "object-curly-spacing": ["error", "never"],
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
         "argsIgnorePattern": "_"
       }
     ],
-    "@typescript-eslint/interface-name-prefix": [
-      "error",
-      {
-        "prefixWithI": "always"
-      }
-    ],
     "import/extensions": [
       "error",
       "ignorePackages",
       {
-        "ts": "never"
+        "ts": "never",
+        "tsx": "never"
       }
     ]
   },

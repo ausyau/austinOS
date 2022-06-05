@@ -11,10 +11,12 @@ interface NavigationContextType {
   setShowHobbies: Dispatch<SetStateAction<boolean>>;
 }
 
-export const NavigationContext = createContext<NavigationContextType>({
+const NavigationContext = createContext<NavigationContextType>({
   showHobbies: false,
-  setShowHobbies: () => {},
+  setShowHobbies: () => [],
 });
+
+export const useNavigationContext = () => useContext(NavigationContext);
 
 export const NavigationProvider = ({children}: {children: JSX.Element}) => {
   const [showHobbies, setShowHobbies] = useState(false);

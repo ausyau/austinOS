@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import Link from "next/link";
 import {useRouter} from "next/router";
-import {useContext} from "react";
-import {NavigationContext} from "../../../context/NavigationContext";
+
+import {useNavigationContext} from "../../../context/NavigationContext";
 
 interface NavItemProps {
   label: string;
@@ -11,7 +11,7 @@ interface NavItemProps {
 }
 
 export const NavItem = ({label, link, subItems}: NavItemProps): JSX.Element => {
-  const {showHobbies, setShowHobbies} = useContext(NavigationContext);
+  const {showHobbies, setShowHobbies} = useNavigationContext();
   const {route} = useRouter();
   const selectedNavItem = link === route;
 

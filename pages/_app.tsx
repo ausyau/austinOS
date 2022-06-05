@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import "../styles/globals.css";
 import type {AppProps} from "next/app";
 import {NavigationProvider} from "../src/context/NavigationContext";

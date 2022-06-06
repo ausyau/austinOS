@@ -8,6 +8,7 @@ const Projects = () => {
       <NavBar />
       <div className="flex flex-col items-center justify-around flex-1 mt-20 font-mono text-primary">
         <div className="w-5/12 ">Hallo</div>
+        <div>Projects will contain tech stack used</div>
       </div>
     </div>
   );

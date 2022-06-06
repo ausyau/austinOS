@@ -1,3 +1,5 @@
+import Image from "next/image";
+import windows from "../../../public/icons/windows.png";
 const YouTube = () => {
   return (
     <svg
@@ -90,6 +92,10 @@ const Photography = () => {
   );
 };
 
+const Windows = () => {
+  return <Image src={windows} alt="WindowsLogo" width={100} height={100} />;
+};
+
 export const Icons = {
   Cycling,
   Photography,
@@ -98,6 +104,7 @@ export const Icons = {
   Project,
   Toolkit,
   Skiing,
+  Windows,
 };
 
 export type IconType = keyof typeof Icons;

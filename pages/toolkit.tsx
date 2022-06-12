@@ -4,7 +4,6 @@ import {NavBar} from "../src/components/Navigation/NavBar";
 import {Disclosure, Dialog, Transition} from "@headlessui/react";
 import {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Icons} from "../src/assets/icons";
 
 // function MyDialog({open, setIsOpen}) {
 //   return (
@@ -88,7 +87,6 @@ const ToolKit = () => {
           <div>
             <FontAwesomeIcon size="3x" icon={["fab", "twitter"]} inverse />
           </div>
-          <Icons.Windows />
           <General />
           <div>General Productivity</div>
           <p>Craft & Notion</p>

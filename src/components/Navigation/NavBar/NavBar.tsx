@@ -3,68 +3,75 @@ import Link from "next/link";
 import {useThemeContext} from "../../../context/ThemeContext";
 import {NavItem} from "../NavItem";
 import {NavItemProps} from "../NavItem/NavItem";
+import {FaIcon} from "../../../assets/icons/icons";
 
 const pages: NavItemProps[] = [
-  {label: "About Me", link: "/about", icon: "User"},
-  {label: "YouTube", link: "/yt", icon: "YouTube"},
-  {label: "Projects", link: "/projects", icon: "Project"},
-  {label: "My Toolkit", link: "/toolkit", icon: "Toolkit"},
-  {
-    label: "Hobbies",
-    link: "/hobbies",
-    subItems: [
-      {label: "Cycling", link: "/cycling", icon: "Cycling"},
-      {label: "Skiing", link: "/skiing", icon: "Skiing"},
-      {label: "Travel & Photography", link: "/travel", icon: "Photography"},
-    ],
-  },
-  {label: "Wisdom", link: "/wisdom"},
+  {label: "Home", link: "/", iconname: "house-blank"},
+  // {label: "YouTube", link: "/yt", icon: "YouTube"},
+  // {label: "Projects", link: "/projects", icon: "Project"},
+  // {label: "My Toolkit", link: "/toolkit", icon: "Toolkit"},
+  // {
+  //   label: "Hobbies",
+  //   link: "/hobbies",
+  //   subItems: [
+  //     {label: "Cycling", link: "/cycling", icon: "Cycling"},
+  //     {label: "Skiing", link: "/skiing", icon: "Skiing"},
+  //     {label: "Travel & Photography", link: "/travel", icon: "Photography"},
+  //   ],
+  // },
+  // {label: "Wisdom", link: "/wisdom"},
 ];
 
-const ToggleTheme = () => {
+const ThemeButton = (): JSX.Element => {
   const {theme, setTheme} = useThemeContext();
 
   function toggleTheme() {
     setTheme(theme === "dark" ? "light" : "dark");
   }
 
-  return <button onClick={() => toggleTheme()}> Change Theme </button>;
+  return (
+    <button
+      className="flex flex-row items-center px-4 mb-3 cursor-pointer"
+      onClick={toggleTheme}
+    >
+      <FaIcon
+        className="pr-3 text-primary"
+        iconname={theme === "dark" ? "sun" : "moon"}
+      />
+      <label className="text-sm cursor-pointer align-center text-primary">
+        {theme === "dark" ? "Light Mode" : "Dark Mode"}
+      </label>
+    </button>
+  );
 };
 
 // Eventually Take in props
-export const NavBar = () => {
+export const NavBar = (): JSX.Element => {
   return (
-    <>
-      <nav className="fixed flex flex-col flex-1 min-h-screen border-r-2 border-slate-800 bg-secondary max-w-nav md">
+    <nav className="fixed flex flex-col justify-between flex-1 w-56 min-h-screen border-r-2 dark:border-slate-800 border-slate-300 bg-secondary md">
+      <div>
         <Link href="/">
-          <a className="inline-flex items-center p-2 mr-4 ">
-            <svg
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-8 h-8 mr-2 text-white fill-current"
-            >
-              <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
-            </svg>
-            <span className="text-xl tracking-wide text-primary">
-              TailwindCSS
+          <a className="inline-flex items-center p-2 my-2 ml-2 mr-4 ">
+            <span className="text-lg font-bold tracking-wide text-primary">
+              Austin Yau
             </span>
           </a>
         </Link>
         <ul>
-          {pages.map(({label, link, subItems, icon}, index) => {
+          {pages.map(({label, link, subItems, iconname}, index) => {
             return (
               <NavItem
                 key={index}
                 label={label}
                 link={link}
-                icon={icon}
+                iconname={iconname}
                 subItems={subItems}
               />
             );
           })}
         </ul>
-        <ToggleTheme />
-      </nav>
-    </>
+      </div>
+      <ThemeButton />
+    </nav>
   );
 };

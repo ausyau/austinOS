@@ -1,3 +1,4 @@
+import {IconName} from "@fortawesome/fontawesome-svg-core";
 import clsx from "clsx";
 import Link from "next/link";
 import {useRouter} from "next/router";
@@ -8,7 +9,7 @@ import {useNavigationContext} from "../../../context/NavigationContext";
 export interface NavItemProps {
   label: string;
   link: string; // This should eventually become like navigation links only
-  iconname?: any; // Update!
+  iconname: IconName; // Update!
   subItems?: NavItemProps[];
 }
 

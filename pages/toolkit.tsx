@@ -1,8 +1,7 @@
 import {Header} from "../src/components/Header";
 import {NavBar} from "../src/components/Navigation/NavBar";
 
-import {Disclosure, Dialog, Transition} from "@headlessui/react";
-import {useState} from "react";
+import {Disclosure, Transition} from "@headlessui/react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 // function MyDialog({open, setIsOpen}) {
@@ -35,7 +34,7 @@ const ProductivityContent = () => {
 const General = () => {
   return (
     <Disclosure>
-      {({open}) => (
+      {() => (
         <>
           <Disclosure.Button>
             <div className={"font-thin text-secondary"}>
@@ -63,10 +62,10 @@ const General = () => {
 };
 
 const ToolKit = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const onClick = () => {
-    setIsOpen(!isOpen);
-  };
+  // const [isOpen, setIsOpen] = useState(true);
+  // const onClick = () => {
+  //   setIsOpen(!isOpen);
+  // };
   return (
     <div className="flex flex-row flex-1 min-h-screen bg-primary">
       <Header />
@@ -75,9 +74,9 @@ const ToolKit = () => {
       <div className="flex flex-col items-center justify-start flex-1 mt-20 font-mono text-primary">
         <div className="w-5/12 ">
           <p className="pb-4">
-            I'm a total gearhead - and I have more stuff than I'd like to admit
+            I’m a total gearhead - and I have more stuff than I’d like to admit
             :sweat smile:. People often ask me about the different tools that I
-            use. Here's a comprehensive list of all of them pertaining to each
+            use. Here’s a comprehensive list of all of them pertaining to each
             category with my opinions as well. I hope to eventually make videos
             covering each one. Disclaimer: some of the links to hardware are
             affiliate links.
@@ -90,7 +89,7 @@ const ToolKit = () => {
           <General />
           <div>General Productivity</div>
           <p>Craft & Notion</p>
-          <p>Hardware: 2018 16" MacbookPro w/ 2.9 GHz 6-Core Intel Core i9</p>
+          <p>{`Hardware: 2018 16" MacbookPro w/ 2.9 GHz 6-Core Intel Core i9`}</p>
           <p>Main Computer: Monitors</p>
           <div>Software Engineering</div>
           <p>Editor: Visual Studio Code</p>

@@ -13,8 +13,8 @@ const Description = (): JSX.Element => {
         <p className="pb-4">
           Hi I’m Austin. I am a software engineer, skier, cyclist, hobbyist
           YouTuber, and ultra amateur photographer. I currently reside in San
-          Francisco with my wife and two dogs. Right now, I’m helping FormSwift
-          with development of their platform.
+          Francisco with my wife and two dogs. Right now, I’m working at
+          FormSwift with the improvement of their PDF platform.
         </p>
         <p className="pb-4">
           Prior to FormSwift, I worked at another startup, and before that, I
@@ -48,6 +48,11 @@ const Social = (): JSX.Element => {
       action: "Subscribe",
     },
     {name: "GitHub", url: "https://github.com/ausyau", action: "Follow"},
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/ausyau/",
+      action: "Connect",
+    },
   ];
   return (
     <div className="flex flex-row justify-end mb-12">
@@ -144,6 +149,7 @@ const ChangeLog = (): JSX.Element => {
       features: [
         {featureName: "Mobile Layout", commit: ""},
         {featureName: "Toolkit Section", commit: ""},
+        {featureName: "Styling Update", commit: ""},
       ],
     },
     {
@@ -247,7 +253,7 @@ const ChangeLog = (): JSX.Element => {
 
 const Home: NextPage = () => {
   return (
-    <div className="flex flex-row flex-1 min-h-screen bg-primary">
+    <div className="flex flex-row flex-1 min-h-screen bg-primary pb-72">
       <Header />
       <NavBar />
       <div className="flex flex-col items-center justify-start flex-1 mt-20 font-mono text-primary">

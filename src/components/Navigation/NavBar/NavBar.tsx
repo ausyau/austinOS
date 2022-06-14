@@ -7,6 +7,7 @@ import {FaIcon} from "../../../assets/icons/icons";
 import {useEffect, useState} from "react";
 import clsx from "clsx";
 import {useWindowDimensions} from "../../../hooks/useWindowDimensions";
+import {Switch} from "@headlessui/react";
 
 const pages: NavItemProps[] = [
   {label: "Home", link: "/", iconname: "house-blank"},
@@ -27,24 +28,31 @@ const pages: NavItemProps[] = [
 
 const ThemeButton = (): JSX.Element => {
   const {theme, setTheme} = useThemeContext();
+  const [darkMode, setDarkMode] = useState(theme === "dark" ? true : false);
 
-  function toggleTheme() {
-    setTheme(theme === "dark" ? "light" : "dark");
-  }
+  useEffect(() => {
+    setTheme(darkMode ? "dark" : "light");
+  }, [theme, darkMode]);
 
   return (
-    <button
-      className="flex flex-row items-center px-4 mb-3 cursor-pointer"
-      onClick={toggleTheme}
-    >
-      <FaIcon
-        className="pr-3 text-primary"
-        iconname={theme === "dark" ? "sun" : "moon"}
-      />
-      <label className="text-sm cursor-pointer align-center text-primary">
-        {theme === "dark" ? "Light Mode" : "Dark Mode"}
-      </label>
-    </button>
+    <div className="flex flex-row items-center justify-center px-4 mb-6 cursor-pointer">
+      <FaIcon className="pr-3 text-primary" iconname="sun" />
+      <Switch
+        checked={darkMode}
+        onChange={setDarkMode}
+        className={`${
+          darkMode ? "bg-blue-600" : "bg-gray-200"
+        } relative inline-flex h-6 w-11 items-center rounded-full`}
+      >
+        <span className="sr-only">Enable notifications</span>
+        <span
+          className={`${
+            darkMode ? "translate-x-6" : "translate-x-1"
+          } inline-block h-4 w-4 transform rounded-full bg-white`}
+        />
+      </Switch>
+      <FaIcon className="pl-3 text-primary" iconname="moon" />
+    </div>
   );
 };
 

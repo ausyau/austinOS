@@ -9,6 +9,8 @@ import {
   faSun,
   faSquareCheck,
   faSquare,
+  faBars,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import type {IconName, IconDefinition} from "@fortawesome/free-solid-svg-icons";
 
@@ -25,6 +27,8 @@ const iconList: Partial<Record<IconName, IconDefinition>> = {
   moon: faMoon,
   sun: faSun,
   square: faSquare,
+  bars: faBars,
+  xmark: faXmark,
 };
 
 export const FaIcon = (props: FAIconProps) => {

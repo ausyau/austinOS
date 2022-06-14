@@ -4,6 +4,8 @@ import {useThemeContext} from "../../../context/ThemeContext";
 import {NavItem} from "../NavItem";
 import {NavItemProps} from "../NavItem/NavItem";
 import {FaIcon} from "../../../assets/icons/icons";
+import {useState} from "react";
+import clsx from "clsx";
 
 const pages: NavItemProps[] = [
   {label: "Home", link: "/", iconname: "house-blank"},
@@ -47,31 +49,61 @@ const ThemeButton = (): JSX.Element => {
 
 // Eventually Take in props
 export const NavBar = (): JSX.Element => {
+  const [navBarHidden, setNavBarHidden] = useState<boolean>(false);
+
+  const hideNavBar = () => {
+    setNavBarHidden(true);
+  };
+  const showNavBar = () => {
+    setNavBarHidden(false);
+  };
+
   return (
-    <nav className="fixed flex flex-col justify-between flex-1 w-56 min-h-screen border-r-2 dark:border-slate-800 border-slate-300 bg-secondary md">
-      <div>
-        <Link href="/">
-          <a className="inline-flex items-center p-2 my-2 ml-2 mr-4 ">
-            <span className="text-lg font-bold tracking-wide text-primary">
-              Austin Yau
-            </span>
-          </a>
-        </Link>
-        <ul>
-          {pages.map(({label, link, subItems, iconname}, index) => {
-            return (
-              <NavItem
-                key={index}
-                label={label}
-                link={link}
-                iconname={iconname}
-                subItems={subItems}
+    <div>
+      <nav className={clsx("fixed", !navBarHidden && "hidden")}>
+        <button className="p-2 my-2 ml-2 xl:hidden" onClick={showNavBar}>
+          <FaIcon className="mr-4 text-primary" iconname="bars" size="lg" />
+        </button>
+      </nav>
+      <nav
+        className={clsx(
+          "fixed flex flex-col justify-between flex-1 w-56 h-screen border-r-2 dark:border-slate-800 border-slate-300 bg-secondary md",
+          navBarHidden && "hidden"
+        )}
+      >
+        <div>
+          <span className="flex flex-row items-center p-2 my-2 ml-2 mr-4">
+            <button className="xl:hidden" onClick={hideNavBar}>
+              <FaIcon
+                className="mr-4 text-primary"
+                iconname="xmark"
+                size="1x"
               />
-            );
-          })}
-        </ul>
-      </div>
-      <ThemeButton />
-    </nav>
+            </button>
+            <Link href="/">
+              <a className="inline-flex items-center mr-4">
+                <span className="font-bold tracking-wide text-md text-primary">
+                  Austin Yau
+                </span>
+              </a>
+            </Link>
+          </span>
+          <ul>
+            {pages.map(({label, link, subItems, iconname}, index) => {
+              return (
+                <NavItem
+                  key={index}
+                  label={label}
+                  link={link}
+                  iconname={iconname}
+                  subItems={subItems}
+                />
+              );
+            })}
+          </ul>
+        </div>
+        <ThemeButton />
+      </nav>
+    </div>
   );
 };

@@ -32,7 +32,7 @@ const ThemeButton = (): JSX.Element => {
 
   useEffect(() => {
     setTheme(darkMode ? "dark" : "light");
-  }, [theme, darkMode]);
+  }, [theme, darkMode, setTheme]);
 
   return (
     <div className="flex flex-row items-center justify-center px-4 mb-6 cursor-pointer">

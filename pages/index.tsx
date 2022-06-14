@@ -7,8 +7,10 @@ import {FaIcon} from "../src/assets/icons";
 
 const Description = (): JSX.Element => {
   return (
-    <div className="flex flex-row justify-end mb-12">
-      <label className="w-2/12 text-right">About</label>
+    <div className="flex flex-col justify-end mb-12 md:flex-row">
+      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0">
+        About
+      </label>
       <div className="flex flex-col flex-1 pl-6">
         <p className="pb-4">
           Hi I’m Austin. I am a software engineer, skier, cyclist, hobbyist
@@ -55,8 +57,10 @@ const Social = (): JSX.Element => {
     },
   ];
   return (
-    <div className="flex flex-row justify-end mb-12">
-      <label className="w-2/12 text-right">Socials</label>
+    <div className="flex flex-col justify-end mb-12 md:flex-row">
+      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0">
+        Socials
+      </label>
       <div className="flex flex-col flex-1 pl-6">
         {socials.map(({name, url, action}) => {
           return (
@@ -105,8 +109,10 @@ const Work = (): JSX.Element => {
     },
   ];
   return (
-    <div className="flex flex-row justify-end mb-12">
-      <label className="w-2/12 text-right">Work</label>
+    <div className="flex flex-col justify-end mb-12 md:flex-row">
+      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0">
+        Work
+      </label>
       <div className="flex flex-col flex-1 pl-6">
         {roles.map(({company, positions}) => {
           return (
@@ -169,8 +175,10 @@ const ChangeLog = (): JSX.Element => {
   ];
 
   return (
-    <div className="flex flex-row justify-end mb-12">
-      <label className="w-2/12 text-right">Changelog</label>
+    <div className="flex flex-col justify-end mb-12 md:flex-row">
+      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0">
+        Changelog
+      </label>
       <div className="flex flex-col flex-1 pl-6">
         {changelogItems.map(
           ({version, completedDate, features}, versionIndex) => {
@@ -257,7 +265,7 @@ const Home: NextPage = () => {
       <Header />
       <NavBar />
       <div className="flex flex-col items-center justify-start flex-1 mt-20 font-mono text-primary">
-        <div className="w-4/12 ">
+        <div className="pr-6 xl:mr-0 md:w-8/12 lg:w-7/12 xl:w-6/12 ">
           <Description />
           <Social />
           <Work />

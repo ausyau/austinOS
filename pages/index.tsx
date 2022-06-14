@@ -110,7 +110,7 @@ const Work = (): JSX.Element => {
       <div className="flex flex-col flex-1 pl-6">
         {roles.map(({company, positions}) => {
           return (
-            <>
+            <div key={company}>
               <p className="underline whitespace-nowrap">{company}</p>
               {positions.map(({title, date}, index) => {
                 return (
@@ -127,7 +127,7 @@ const Work = (): JSX.Element => {
                   </div>
                 );
               })}
-            </>
+            </div>
           );
         })}
       </div>

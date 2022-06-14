@@ -4,8 +4,9 @@ import {useThemeContext} from "../../../context/ThemeContext";
 import {NavItem} from "../NavItem";
 import {NavItemProps} from "../NavItem/NavItem";
 import {FaIcon} from "../../../assets/icons/icons";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import clsx from "clsx";
+import {useWindowDimensions} from "../../../hooks/useWindowDimensions";
 
 const pages: NavItemProps[] = [
   {label: "Home", link: "/", iconname: "house-blank"},
@@ -49,6 +50,7 @@ const ThemeButton = (): JSX.Element => {
 
 // Eventually Take in props
 export const NavBar = (): JSX.Element => {
+  const {width} = useWindowDimensions();
   const [navBarHidden, setNavBarHidden] = useState<boolean>(false);
 
   const hideNavBar = () => {
@@ -57,6 +59,12 @@ export const NavBar = (): JSX.Element => {
   const showNavBar = () => {
     setNavBarHidden(false);
   };
+
+  useEffect(() => {
+    if (width >= 1280) {
+      setNavBarHidden(false);
+    }
+  }, [width]);
 
   return (
     <div>

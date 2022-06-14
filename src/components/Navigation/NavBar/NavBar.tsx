@@ -68,8 +68,8 @@ export const NavBar = (): JSX.Element => {
 
   return (
     <div>
-      <nav className={clsx("fixed", !navBarHidden && "hidden")}>
-        <button className="p-2 my-2 ml-2 xl:hidden" onClick={showNavBar}>
+      <nav className={clsx("flex flex-1 fixed bg-primary w-screen xl:hidden")}>
+        <button className="p-2 my-2 ml-2 " onClick={showNavBar}>
           <FaIcon className="mr-4 text-primary" iconname="bars" size="lg" />
         </button>
       </nav>

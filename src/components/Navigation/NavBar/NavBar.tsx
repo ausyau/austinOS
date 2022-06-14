@@ -68,28 +68,31 @@ export const NavBar = (): JSX.Element => {
 
   return (
     <div>
-      <nav className={clsx("flex flex-1 fixed bg-primary w-screen xl:hidden")}>
-        <button className="p-2 my-2 ml-2 " onClick={showNavBar}>
-          <FaIcon className="mr-4 text-primary" iconname="bars" size="lg" />
+      <nav className="flex flex-1 fixed bg-primary w-screen xl:hidden">
+        <button
+          className="flex m-2 p-2 rounded-md w-9 h-9 items-center justify-center hover:bg-slate-600"
+          onClick={showNavBar}
+        >
+          <FaIcon className="text-primary" iconname="bars" size="lg" />
         </button>
       </nav>
       <nav
         className={clsx(
           "fixed flex flex-col justify-between flex-1 w-56 h-screen border-r-2 dark:border-slate-800 border-slate-300 bg-secondary md",
-          navBarHidden && "hidden"
+          "transform transition-transform ease-in duration-200 translate-x-0",
+          navBarHidden && "-translate-x-full"
         )}
       >
         <div>
-          <span className="flex flex-row items-center p-2 my-2 ml-2 mr-4">
-            <button className="xl:hidden" onClick={hideNavBar}>
-              <FaIcon
-                className="mr-4 text-primary"
-                iconname="xmark"
-                size="1x"
-              />
+          <span className="flex flex-row items-center my-4 xl:mx-5">
+            <button
+              className="flex items-center justify-center xl:hidden mx-2 p-2 h-6 w-6 rounded-md hover:bg-slate-600"
+              onClick={hideNavBar}
+            >
+              <FaIcon className=" text-primary" iconname="xmark" size="1x" />
             </button>
             <Link href="/">
-              <a className="inline-flex items-center mr-4">
+              <a className="inline-flex items-start">
                 <span className="font-bold tracking-wide text-md text-primary">
                   Austin Yau
                 </span>

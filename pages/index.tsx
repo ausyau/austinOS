@@ -16,7 +16,8 @@ const Description = (): JSX.Element => {
           Hi I’m Austin. I am a software engineer, skier, cyclist, hobbyist
           YouTuber, and ultra amateur photographer. I currently reside in San
           Francisco with my wife and two dogs. Right now, I’m working at
-          FormSwift focusing improving of their PDF platform.
+          FormSwift where I focus on improving of the experience of their PDF
+          platform.
         </p>
         <p className="pb-4">
           Prior to FormSwift, I worked at another startup, and before that, I
@@ -153,9 +154,22 @@ const ChangeLog = (): JSX.Element => {
       version: "Upcoming Features",
       completedDate: "",
       features: [
-        {featureName: "Mobile Layout", commit: ""},
         {featureName: "Toolkit Section", commit: ""},
-        {featureName: "Styling Update", commit: ""},
+        {featureName: "API Layer", commit: ""},
+      ],
+    },
+    {
+      version: "0.0.2",
+      completedDate: "06/12/22",
+      features: [
+        {
+          featureName: "Digital Ocean Deployment",
+          commit: "",
+        },
+        {
+          featureName: "Mobile Layout & Syling",
+          commit: "518c67a7a8aa93b90c9a5a15354b5a9514b813ab",
+        },
       ],
     },
     {

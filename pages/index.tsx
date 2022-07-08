@@ -8,7 +8,7 @@ import {FaIcon} from "../src/assets/icons";
 const Description = (): JSX.Element => {
   return (
     <div className="flex flex-col justify-end mb-12 md:flex-row">
-      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0">
+      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0 font-bold xl:font-medium text-gray-200 dark:xl:text-gray-400">
         About
       </label>
       <div className="flex flex-col flex-1 pl-6">
@@ -16,7 +16,7 @@ const Description = (): JSX.Element => {
           Hi I’m Austin. I am a software engineer, skier, cyclist, hobbyist
           YouTuber, and ultra amateur photographer. I currently reside in San
           Francisco with my wife and two dogs. Right now, I’m working at
-          FormSwift with the improvement of their PDF platform.
+          FormSwift focusing improving of their PDF platform.
         </p>
         <p className="pb-4">
           Prior to FormSwift, I worked at another startup, and before that, I
@@ -58,7 +58,7 @@ const Social = (): JSX.Element => {
   ];
   return (
     <div className="flex flex-col justify-end mb-12 md:flex-row">
-      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0">
+      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0 font-bold xl:font-medium text-gray-200 xl:text-gray-400">
         Socials
       </label>
       <div className="flex flex-col flex-1 pl-6">
@@ -110,7 +110,7 @@ const Work = (): JSX.Element => {
   ];
   return (
     <div className="flex flex-col justify-end mb-12 md:flex-row">
-      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0">
+      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0 font-bold xl:font-medium text-gray-200 xl:text-gray-400">
         Work
       </label>
       <div className="flex flex-col flex-1 pl-6">
@@ -176,7 +176,7 @@ const ChangeLog = (): JSX.Element => {
 
   return (
     <div className="flex flex-col justify-end mb-12 md:flex-row">
-      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0">
+      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0 font-bold xl:font-medium text-gray-200 xl:text-gray-400">
         Changelog
       </label>
       <div className="flex flex-col flex-1 pl-6">
@@ -188,17 +188,22 @@ const ChangeLog = (): JSX.Element => {
                   <div className="mb-3">
                     <div className="flex flex-row items-center justify-between pr-5">
                       <Disclosure.Button>
-                        <p className="flex flex-row whitespace-nowrap">
+                        <div className="flex flex-row whitespace-nowrap">
                           <FaIcon
                             className="pr-2 text-primary"
                             iconname={
                               open ? "circle-arrow-down" : "circle-arrow-right"
                             }
                           />
-                          {version}
-                        </p>
+                          <p>{version}</p>
+                        </div>
                       </Disclosure.Button>
-                      <span className="w-full mx-4 border-t border-gray-300 border-dashed shrink dark:border-gray-400"></span>
+                      <span
+                        className={clsx(
+                          "w-full mx-4 border-t border-gray-300 border-dashed shrink dark:border-gray-400",
+                          !completedDate && "mr-0"
+                        )}
+                      ></span>
                       {completedDate ? (
                         <div className="flex flex-row whitespace-nowrap">
                           <FaIcon
@@ -218,7 +223,7 @@ const ChangeLog = (): JSX.Element => {
                       leaveFrom="transform scale-100 opacity-100"
                       leaveTo="transform scale-95 opacity-0"
                     >
-                      <Disclosure.Panel>
+                      <Disclosure.Panel static>
                         {features.map(({featureName, commit}, featureIndex) => {
                           return (
                             <div
@@ -261,10 +266,10 @@ const ChangeLog = (): JSX.Element => {
 
 const Home: NextPage = () => {
   return (
-    <div className="flex flex-row flex-1 min-h-screen bg-primary pb-72">
+    <div className="flex flex-row flex-1 min-h-screen bg-primary pb-72 overflow-hidden overscroll-none">
       <Header />
       <NavBar />
-      <div className="flex flex-col items-center justify-start flex-1 mt-20 font-mono text-primary">
+      <div className="flex flex-col items-center justify-start flex-1 mt-20 text-primary ">
         <div className="pr-6 xl:mr-0 md:w-8/12 lg:w-7/12 xl:w-6/12 ">
           <Description />
           <Social />

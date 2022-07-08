@@ -59,7 +59,7 @@ const ThemeButton = (): JSX.Element => {
 // Eventually Take in props
 export const NavBar = (): JSX.Element => {
   const {width} = useWindowDimensions();
-  const [navBarHidden, setNavBarHidden] = useState<boolean>(false);
+  const [navBarHidden, setNavBarHidden] = useState<boolean>(true);
 
   const hideNavBar = () => {
     setNavBarHidden(true);

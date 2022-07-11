@@ -8,11 +8,7 @@ import {Header} from "../src/components/Header";
 import clsx from "clsx";
 import {Disclosure, Transition} from "@headlessui/react";
 import {FaIcon} from "../src/assets/icons";
-import {
-  formatChangelog,
-  FormattedChangeLog,
-  FormattedFeature,
-} from "../src/utils/formatChangelog";
+import {formatChangelog, FormattedFeature} from "../src/utils/formatChangelog";
 
 const NOTION_API_KEY = process.env.NOTION_API_KEY;
 
@@ -158,25 +154,14 @@ type ChangeLogItem = {
   features: FormattedFeature[];
 };
 
-const ChangeLog = ({
-  changelog,
-}: {
-  changelog: FormattedChangeLog;
-}): JSX.Element => {
-  const changelogItems: ChangeLogItem[] = [];
-  for (const version in changelog) {
-    changelogItems.push({
-      version,
-      features: changelog[version],
-    });
-  }
+const ChangeLog = ({changelog}: {changelog: ChangeLogItem[]}): JSX.Element => {
   return (
     <div className="flex flex-col justify-end mb-12 md:flex-row">
       <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0 font-bold xl:font-medium text-gray-200 xl:text-gray-400">
         Changelog
       </label>
       <div className="flex flex-col flex-1 pl-6">
-        {changelogItems.map(({version, features}, versionIndex) => {
+        {changelog.map(({version, features}, versionIndex) => {
           const releaseDate = features[0].featureDate
             ? new Date(features[0].featureDate).toLocaleDateString("en-us", {
                 year: "numeric",
@@ -313,10 +298,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   const res = await fetch(url, options);
   const data = await res.json();
-  const formattedData = formatChangelog(data);
+  const changelog = formatChangelog(data);
 
   return {
-    props: {data: {changelog: formattedData}}, // will be passed to the page component as props
+    props: {data: {changelog}},
   };
 };
 

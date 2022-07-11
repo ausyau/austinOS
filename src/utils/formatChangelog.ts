@@ -133,5 +133,12 @@ export const formatChangelog = (data: NotionDatabaseQueryResponse) => {
       ];
     }
   }
-  return formattedChangelog;
+  const changelog = [];
+  for (const version in formattedChangelog) {
+    changelog.push({
+      version,
+      features: formattedChangelog[version],
+    });
+  }
+  return changelog;
 };

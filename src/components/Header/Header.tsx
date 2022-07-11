@@ -1,6 +1,6 @@
 import Head from "next/head";
 import {useRouter} from "next/router";
-import {formatRoute} from "../../utils/routeFormatter";
+import {formatRoute} from "../../utils/formatRoute";
 
 export const Header = () => {
   const {route} = useRouter();

@@ -1,9 +1,20 @@
-import type {NextPage} from "next";
+import type {
+  GetServerSideProps,
+  NextPage,
+  InferGetServerSidePropsType,
+} from "next";
 import {NavBar} from "../src/components/Navigation/NavBar";
 import {Header} from "../src/components/Header";
 import clsx from "clsx";
 import {Disclosure, Transition} from "@headlessui/react";
 import {FaIcon} from "../src/assets/icons";
+import {
+  formatChangelog,
+  FormattedChangeLog,
+  FormattedFeature,
+} from "../src/utils/formatChangelog";
+
+const NOTION_API_KEY = process.env.NOTION_API_KEY;
 
 const Description = (): JSX.Element => {
   return (
@@ -142,143 +153,128 @@ const Work = (): JSX.Element => {
   );
 };
 
-const GITHUB_BASE_URL = "https://github.com/ausyau/austinOS/commit/";
+type ChangeLogItem = {
+  version: string;
+  features: FormattedFeature[];
+};
 
-const ChangeLog = (): JSX.Element => {
-  const changelogItems: {
-    version: string;
-    completedDate: string;
-    features: {featureName: string; commit: string}[];
-  }[] = [
-    {
-      version: "Upcoming Features",
-      completedDate: "",
-      features: [
-        {featureName: "Toolkit Section", commit: ""},
-        {featureName: "API Layer", commit: ""},
-      ],
-    },
-    {
-      version: "0.0.2",
-      completedDate: "06/12/22",
-      features: [
-        {
-          featureName: "Digital Ocean Deployment",
-          commit: "",
-        },
-        {
-          featureName: "Mobile Layout & Syling",
-          commit: "518c67a7a8aa93b90c9a5a15354b5a9514b813ab",
-        },
-      ],
-    },
-    {
-      version: "0.0.1",
-      completedDate: "06/12/22",
-      features: [
-        {
-          featureName: "Dark Mode",
-          commit: "c27ca4fa328505a6e252d56265b09d2959df65c8",
-        },
-        {
-          featureName: "Navigation Menu",
-          commit: "9330168e7fb2d5e3de1128b18fa83dc0205e05ee",
-        },
-      ],
-    },
-  ];
-
+const ChangeLog = ({
+  changelog,
+}: {
+  changelog: FormattedChangeLog;
+}): JSX.Element => {
+  const changelogItems: ChangeLogItem[] = [];
+  for (const version in changelog) {
+    changelogItems.push({
+      version,
+      features: changelog[version],
+    });
+  }
   return (
     <div className="flex flex-col justify-end mb-12 md:flex-row">
       <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0 font-bold xl:font-medium text-gray-200 xl:text-gray-400">
         Changelog
       </label>
       <div className="flex flex-col flex-1 pl-6">
-        {changelogItems.map(
-          ({version, completedDate, features}, versionIndex) => {
-            return (
-              <Disclosure key={versionIndex}>
-                {({open}) => (
-                  <div className="mb-3">
-                    <div className="flex flex-row items-center justify-between pr-5">
-                      <Disclosure.Button>
-                        <div className="flex flex-row whitespace-nowrap">
-                          <FaIcon
-                            className="pr-2 text-primary"
-                            iconname={
-                              open ? "circle-arrow-down" : "circle-arrow-right"
-                            }
-                          />
-                          <p>{version}</p>
-                        </div>
-                      </Disclosure.Button>
-                      <span
-                        className={clsx(
-                          "w-full mx-4 border-t border-gray-300 border-dashed shrink dark:border-gray-400",
-                          !completedDate && "mr-0"
-                        )}
-                      ></span>
-                      {completedDate ? (
-                        <div className="flex flex-row whitespace-nowrap">
-                          <FaIcon
-                            className="pr-2 text-primary"
-                            iconname={"square-check"}
-                          />
-                          <label>{completedDate}</label>
-                        </div>
-                      ) : null}
-                    </div>
-
-                    <Transition
-                      enter="transition duration-100 ease-out"
-                      enterFrom="transform scale-95 opacity-0"
-                      enterTo="transform scale-100 opacity-100"
-                      leave="transition duration-75 ease-out"
-                      leaveFrom="transform scale-100 opacity-100"
-                      leaveTo="transform scale-95 opacity-0"
-                    >
-                      <Disclosure.Panel static>
-                        {features.map(({featureName, commit}, featureIndex) => {
-                          return (
-                            <div
-                              key={`${featureIndex}-${featureName} `}
-                              className="flex flex-row items-center pr-5 ml-3 whitespace-nowrap"
-                            >
-                              <FaIcon
-                                className="pr-2 text-primary"
-                                iconname={
-                                  versionIndex === 0 ? "square" : "square-check"
-                                }
-                              />
-                              <span className="w-auto">{featureName}</span>
-                              <span className="w-full mx-4 border-t border-gray-300 border-dashed shrink dark:border-gray-400"></span>
-                              {commit ? (
-                                <a
-                                  href={`${GITHUB_BASE_URL}${commit}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="hover:underline"
-                                >
-                                  {commit.slice(0, 7)}
-                                </a>
-                              ) : null}
-                            </div>
-                          );
-                        })}
-                      </Disclosure.Panel>
-                    </Transition>
+        {changelogItems.map(({version, features}, versionIndex) => {
+          const releaseDate = features[0].featureDate
+            ? new Date(features[0].featureDate).toLocaleDateString("en-us", {
+                year: "numeric",
+                month: "short",
+                day: "2-digit",
+              })
+            : null;
+          return (
+            <Disclosure key={versionIndex}>
+              {({open}) => (
+                <div className="mb-3">
+                  <div className="flex flex-row items-center justify-between pr-5">
+                    <Disclosure.Button>
+                      <div className="flex flex-row whitespace-nowrap">
+                        <FaIcon
+                          className="pr-2 text-primary"
+                          iconname={
+                            open ? "circle-arrow-down" : "circle-arrow-right"
+                          }
+                        />
+                        <p>{version}</p>
+                      </div>
+                    </Disclosure.Button>
+                    <span
+                      className={clsx(
+                        "w-full mx-4 border-t border-gray-300 border-dashed shrink dark:border-gray-400",
+                        !releaseDate && "mr-0"
+                      )}
+                    ></span>
+                    {releaseDate ? (
+                      <div className="flex flex-row whitespace-nowrap">
+                        <FaIcon
+                          className="pr-2 text-primary"
+                          iconname={"square-check"}
+                        />
+                        <label>{releaseDate}</label>
+                      </div>
+                    ) : null}
                   </div>
-                )}
-              </Disclosure>
-            );
-          }
-        )}
+
+                  <Transition
+                    enter="transition duration-100 ease-out"
+                    enterFrom="transform scale-95 opacity-0"
+                    enterTo="transform scale-100 opacity-100"
+                    leave="transition duration-75 ease-out"
+                    leaveFrom="transform scale-100 opacity-100"
+                    leaveTo="transform scale-95 opacity-0"
+                  >
+                    <Disclosure.Panel static>
+                      {features.map(({featureName, commit}, featureIndex) => {
+                        return (
+                          <div
+                            key={`${featureIndex}-${featureName} `}
+                            className="flex flex-row items-center pr-5 ml-3 whitespace-nowrap"
+                          >
+                            <FaIcon
+                              className="pr-2 text-primary"
+                              iconname={
+                                versionIndex === 0 ? "square" : "square-check"
+                              }
+                            />
+                            <span className="w-auto">{featureName}</span>
+                            <span
+                              className={clsx(
+                                "w-full border-t border-gray-300 border-dashed shrink dark:border-gray-400",
+                                commit ? "mx-4" : "ml-4"
+                              )}
+                            ></span>
+                            {commit ? (
+                              <a
+                                href={commit}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:underline"
+                              >
+                                {commit.slice(42, 49)}
+                              </a>
+                            ) : null}
+                          </div>
+                        );
+                      })}
+                    </Disclosure.Panel>
+                  </Transition>
+                </div>
+              )}
+            </Disclosure>
+          );
+        })}
       </div>
     </div>
   );
 };
 
-const Home: NextPage = () => {
+const Home: NextPage = ({
+  data,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const {changelog} = data;
+
   return (
     <div className="flex flex-row flex-1 min-h-screen bg-primary pb-72 overflow-hidden overscroll-none">
       <Header />
@@ -288,11 +284,40 @@ const Home: NextPage = () => {
           <Description />
           <Social />
           <Work />
-          <ChangeLog />
+          <ChangeLog changelog={changelog} />
         </div>
       </div>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const url =
+    "https://api.notion.com/v1/databases/6ceed1f4d0eb446995fbb302970bf0a6/query";
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Notion-Version": "2022-02-22",
+      Authorization: `Bearer ${NOTION_API_KEY}`,
+    },
+    body: JSON.stringify({
+      sorts: [
+        {
+          property: "version",
+          direction: "descending",
+        },
+      ],
+    }),
+  };
+
+  const res = await fetch(url, options);
+  const data = await res.json();
+  const formattedData = formatChangelog(data);
+
+  return {
+    props: {data: {changelog: formattedData}}, // will be passed to the page component as props
+  };
 };
 
 export default Home;

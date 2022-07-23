@@ -23,18 +23,17 @@
   .navItem:hover {
     background-position: -100% 0;
   }
-
   .dark .navItem {
-    background-image: linear-gradient(to right, #1e2434 50%, #151b2c 50%);
+    background-image: linear-gradient(to right, #252a33 50%, #4c566a 50%);
   }
   .dark .navItem.selected {
-    background-image: linear-gradient(to right, #5a6785 50%, #5a6785 50%);
+    background-image: linear-gradient(to right, #4c566a 50%, #4c566a 50%);
   }
   .light .navItem {
-    background-image: linear-gradient(to right, #edf2f7 50%, #ffffff 50%);
+    background-image: linear-gradient(to right, #edf2f7 50%, #d8dee9 50%);
   }
   .light .navItem.selected {
-    background-image: linear-gradient(to right, #ffffff 50%, #ffffff 50%);
+    background-image: linear-gradient(to right, #d8dee9 50%, #d8dee9 50%);
   }
 }
 
@@ -57,17 +56,19 @@ a {
 }
 
 .dark {
-  --color-bg-primary: #11192f;
-  --color-bg-secondary: #1e2434;
+  --color-bg-primary: #2e3440;
+  --color-bg-secondary: #252a33;
   --color-text-primary: #cdcdcf;
-  --color-text-secondary: #e2e8f0;
+  --color-text-secondary: #5e81ac;
+  --color-text-tertiary: #8fbcbb;
   --color-text-accent: #81e6d9;
 }
 
 .light {
   --color-bg-primary: #ffffff;
-  --color-bg-secondary: #edf2f7;
-  --color-text-primary: #5a5a5c;
-  --color-text-secondary: #4a5568;
+  --color-bg-secondary: #eceff4;
+  --color-text-primary: #2e3440;
+  --color-text-secondary: #5e81ac;
+  --color-text-tertiary: #8fbcbb;
   --color-text-accent: #2b6cb0;
 }

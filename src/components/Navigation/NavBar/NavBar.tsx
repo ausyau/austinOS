@@ -86,7 +86,7 @@ export const NavBar = (): JSX.Element => {
       </nav>
       <nav
         className={clsx(
-          "fixed flex flex-col justify-between flex-1 w-56 h-screen border-r-2 dark:border-slate-800 border-slate-300 bg-secondary md",
+          "fixed flex flex-col justify-between flex-1 w-56 h-screen bg-secondary md",
           "transform transition-transform ease-in duration-200 translate-x-0",
           navBarHidden && "-translate-x-full"
         )}

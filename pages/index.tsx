@@ -11,34 +11,33 @@ import {FaIcon} from "../src/assets/icons";
 import {formatChangelog, FormattedFeature} from "../src/utils/formatChangelog";
 
 const NOTION_API_KEY = process.env.NOTION_API_KEY;
+const LABEL_STYLE =
+  "w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0 font-bold xl:font-medium text-secondary";
 
 const Description = (): JSX.Element => {
   return (
     <div className="flex flex-col justify-end mb-12 md:flex-row">
-      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0 font-bold xl:font-medium text-gray-200 dark:xl:text-gray-400">
-        About
-      </label>
-      <div className="flex flex-col flex-1 pl-6">
-        <p className="pb-4">
+      <label className={LABEL_STYLE}>About</label>
+      <div className="flex flex-col flex-1 px-6">
+        <p className="pb-4 text-justify">
           Hi I’m Austin. I am a software engineer, skier, cyclist, hobbyist
           YouTuber, and ultra amateur photographer. I currently reside in San
           Francisco with my wife and two dogs. Right now, I’m working at
-          FormSwift where I focus on improving of the experience of their PDF
-          platform.
+          FormSwift where I focus on improving all things form related.
         </p>
-        <p className="pb-4">
+        <p className="pb-4 text-justify">
           Prior to FormSwift, I worked at another startup, and before that, I
           was a product manager at Visa. I actually got into Software
           Engineering rather late in the game because I spent my earlier years
           on the business side of things.
         </p>
-        <p className="pb-4">
+        <p className="pb-4 text-justify">
           Thanks for visting AustinOS. I made this site to share with you
           several things that occupy my time and showcase a lot of who I am -
           hobbies, side projects, and work. This site is also my playground for
           fooling around with new technologies (sorry if you encounter a bug!)
         </p>
-        <p className="pb-4">
+        <p className="pb-4 text-justify">
           Feel free to poke around and check things out. After releasing an MVP,
           I am going to work on making sure the changelog below links to commits
           to reflect that change. The source code is all publicly available so
@@ -66,9 +65,7 @@ const Social = (): JSX.Element => {
   ];
   return (
     <div className="flex flex-col justify-end mb-12 md:flex-row">
-      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0 font-bold xl:font-medium text-gray-200 xl:text-gray-400">
-        Socials
-      </label>
+      <label className={LABEL_STYLE}>Socials</label>
       <div className="flex flex-col flex-1 pl-6">
         {socials.map(({name, url, action}) => {
           return (
@@ -118,9 +115,7 @@ const Work = (): JSX.Element => {
   ];
   return (
     <div className="flex flex-col justify-end mb-12 md:flex-row">
-      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0 font-bold xl:font-medium text-gray-200 xl:text-gray-400">
-        Work
-      </label>
+      <label className={LABEL_STYLE}>Work</label>
       <div className="flex flex-col flex-1 pl-6">
         {roles.map(({company, positions}) => {
           return (
@@ -157,9 +152,7 @@ type ChangeLogItem = {
 const ChangeLog = ({changelog}: {changelog: ChangeLogItem[]}): JSX.Element => {
   return (
     <div className="flex flex-col justify-end mb-12 md:flex-row">
-      <label className="w-2/12 pl-6 mb-6 md:pl-0 md:text-right md:mb-0 font-bold xl:font-medium text-gray-200 xl:text-gray-400">
-        Changelog
-      </label>
+      <label className={LABEL_STYLE}>Changelog</label>
       <div className="flex flex-col flex-1 pl-6">
         {changelog.map(({version, features}, versionIndex) => {
           const releaseDate = features[0].featureDate
@@ -177,7 +170,7 @@ const ChangeLog = ({changelog}: {changelog: ChangeLogItem[]}): JSX.Element => {
                     <Disclosure.Button>
                       <div className="flex flex-row whitespace-nowrap">
                         <FaIcon
-                          className="pr-2 text-primary"
+                          className="pr-2 text-tertiary"
                           iconname={
                             open ? "circle-arrow-down" : "circle-arrow-right"
                           }
@@ -194,7 +187,7 @@ const ChangeLog = ({changelog}: {changelog: ChangeLogItem[]}): JSX.Element => {
                     {releaseDate ? (
                       <div className="flex flex-row whitespace-nowrap">
                         <FaIcon
-                          className="pr-2 text-primary"
+                          className="pr-2 text-tertiary"
                           iconname={"square-check"}
                         />
                         <label>{releaseDate}</label>
@@ -218,7 +211,7 @@ const ChangeLog = ({changelog}: {changelog: ChangeLogItem[]}): JSX.Element => {
                             className="flex flex-row items-center pr-5 ml-3 whitespace-nowrap"
                           >
                             <FaIcon
-                              className="pr-2 text-primary"
+                              className="pr-2 text-tertiary"
                               iconname={
                                 versionIndex === 0 ? "square" : "square-check"
                               }

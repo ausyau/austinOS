@@ -13,7 +13,7 @@ const pages: NavItemProps[] = [
   {label: "Home", link: "/", iconname: "house-blank"},
   // {label: "YouTube", link: "/yt", icon: "YouTube"},
   // {label: "Projects", link: "/projects", icon: "Project"},
-  // {label: "My Toolkit", link: "/toolkit", icon: "Toolkit"},
+  {label: "My Toolkit", link: "/toolkit", iconname: "toolbox"},
   // {
   //   label: "Hobbies",
   //   link: "/hobbies",

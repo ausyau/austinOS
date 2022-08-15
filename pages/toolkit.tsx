@@ -1,8 +1,15 @@
 import {Header} from "../src/components/Header";
 import {NavBar} from "../src/components/Navigation/NavBar";
 
-import {Disclosure, Transition} from "@headlessui/react";
+import {Disclosure, Transition, Tab} from "@headlessui/react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import clsx from "clsx";
+import { PageWrapper } from "../src/components/Page/PageWrapper";
+
+// This page will be tabs of different groupings
+// Software, Hardware, Activites
+// Inside each, there will be a group
+// Clicking an item will open a modal on Desktop that shows more information
 
 // function MyDialog({open, setIsOpen}) {
 //   return (
@@ -61,52 +68,84 @@ const General = () => {
   );
 };
 
+const TabTest = () => {
+  const TabListSections = [
+    {name: 'Engineering'},
+    {name: 'Hardware'},
+    {name: 'Health'},
+    {name: 'Apps'},
+
+  ]
+
+  return (
+    <Tab.Group>
+      <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+        {TabListSections.map((section, index) => {
+          return (
+            <Tab key={index} className={({ selected }) =>
+            clsx(
+              'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
+              'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+              selected
+                ? 'bg-white shadow'
+                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+            )
+          }>{section.name}</Tab>
+          )
+        })}
+ 
+
+      </Tab.List>
+      <Tab.Panels>
+        <Tab.Panel>Content 1</Tab.Panel>
+        <Tab.Panel>Content 2</Tab.Panel>
+        <Tab.Panel>Content 3</Tab.Panel>
+      </Tab.Panels>
+    </Tab.Group>
+  )
+}
+
 const ToolKit = () => {
   // const [isOpen, setIsOpen] = useState(true);
   // const onClick = () => {
   //   setIsOpen(!isOpen);
   // };
   return (
-    <div className="flex flex-row flex-1 min-h-screen bg-primary">
-      <Header />
-      <NavBar />
-      {/* <MyDialog open={isOpen} setIsOpen={setIsOpen} /> */}
-      <div className="flex flex-col items-center justify-start flex-1 mt-20 font-mono text-primary">
-        <div className="w-5/12 ">
-          <p className="pb-4">
-            I’m a total gearhead - and I have more stuff than I’d like to admit
-            :sweat smile:. People often ask me about the different tools that I
-            use. Here’s a comprehensive list of all of them pertaining to each
-            category with my opinions as well. I hope to eventually make videos
-            covering each one. Disclaimer: some of the links to hardware are
-            affiliate links.
-          </p>
+    <PageWrapper>
 
-          {/* <button onClick={onClick}>Toggle</button> */}
-          <div>
-            <FontAwesomeIcon size="3x" icon={["fab", "twitter"]} inverse />
-          </div>
-          <General />
-          <div>General Productivity</div>
-          <p>Craft & Notion</p>
-          <p>{`Hardware: 2018 16" MacbookPro w/ 2.9 GHz 6-Core Intel Core i9`}</p>
-          <p>Main Computer: Monitors</p>
-          <div>Software Engineering</div>
-          <p>Editor: Visual Studio Code</p>
-          <p>Tools: iTerm, Postman, Insomnia, TablePlus, Rectangle</p>
-          <div>Photography, Videography, and YouTube</div>
-          <p>Sony a7iii, 24-35 GM, 70-200m M, </p>
-          <p>
-            Shure SM7B, Elgato Wave, Elgato Streamdeck, Tc Helion GoXlr Mini,{" "}
-          </p>
-          <p>Premiere Pro, Lightroom</p>
-          <div>Skiing</div>
-          <p>20XX Black Crows Atris, Nocta</p>
-          <div>Cycling</div>
-          <p>Specialized Tarmac Pro </p>
-        </div>
+      <p className="pb-4">
+        I’m a total gearhead - and I have more stuff than I’d like to admit
+        :sweat smile:. People often ask me about the different tools that I
+        use. Here’s a comprehensive list of all of them pertaining to each
+        category with my opinions as well. I hope to eventually make videos
+        covering each one. Disclaimer: some of the links to hardware are
+        affiliate links.
+      </p>
+
+      {/* <button onClick={onClick}>Toggle</button> */}
+      <div>
+        <FontAwesomeIcon size="3x" icon={["fab", "twitter"]} inverse />
       </div>
-    </div>
+      <TabTest />
+      {/* <div>General Productivity</div>
+      <p>Craft & Notion</p>
+      <p>{`Hardware: 2018 16" MacbookPro w/ 2.9 GHz 6-Core Intel Core i9`}</p>
+      <p>Main Computer: Monitors</p>
+      <div>Software Engineering</div>
+      <p>Editor: Visual Studio Code</p>
+      <p>Tools: iTerm, Postman, Insomnia, TablePlus, Rectangle</p>
+      <div>Photography, Videography, and YouTube</div>
+      <p>Sony a7iii, 24-35 GM, 70-200m M, </p>
+      <p>
+        Shure SM7B, Elgato Wave, Elgato Streamdeck, Tc Helion GoXlr Mini,{" "}
+      </p>
+      <p>Premiere Pro, Lightroom</p>
+      <div>Skiing</div>
+      <p>20XX Black Crows Atris, Nocta</p>
+      <div>Cycling</div>
+      <p>Specialized Tarmac Pro </p> */}
+    </PageWrapper>
+
   );
 };
 

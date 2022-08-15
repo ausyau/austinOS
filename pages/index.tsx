@@ -9,6 +9,7 @@ import clsx from "clsx";
 import {Disclosure, Transition} from "@headlessui/react";
 import {FaIcon} from "../src/assets/icons";
 import {formatChangelog, FormattedFeature} from "../src/utils/formatChangelog";
+import { PageWrapper } from "../src/components/Page/PageWrapper";
 
 const NOTION_API_KEY = process.env.NOTION_API_KEY;
 const LABEL_STYLE =
@@ -254,18 +255,15 @@ const Home: NextPage = ({
   const {changelog} = data;
 
   return (
-    <div className="flex flex-row flex-1 min-h-screen bg-primary pb-72 overflow-hidden overscroll-none">
-      <Header />
-      <NavBar />
-      <div className="flex flex-col items-center justify-start flex-1 mt-20 text-primary ">
-        <div className="pr-6 xl:mr-0 md:w-8/12 lg:w-7/12 xl:w-6/12 ">
-          <Description />
-          <Social />
-          <Work />
-          <ChangeLog changelog={changelog} />
-        </div>
-      </div>
-    </div>
+    <PageWrapper>
+      
+                <Description />
+                <Social />
+                <Work />
+                <ChangeLog changelog={changelog} />
+
+    </PageWrapper>
+
   );
 };
 
